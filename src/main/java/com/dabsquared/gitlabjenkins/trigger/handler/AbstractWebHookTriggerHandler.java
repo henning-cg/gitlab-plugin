@@ -103,7 +103,7 @@ public abstract class AbstractWebHookTriggerHandler<H extends WebHook> implement
     protected URIish retrieveUrIish(WebHook hook) {
         try {
             if (hook.getRepository() != null) {
-                return new URIish(hook.getRepository().getUrl());
+                return new URIish(hook.getRepository().getGitHttpUrl());
             }
         } catch (URISyntaxException e) {
             LOGGER.log(Level.WARNING, "could not parse URL");

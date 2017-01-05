@@ -60,7 +60,7 @@ public class PushBuildAction extends BuildWebHookAction {
     }
 
     public void execute() {
-        if (pushHook.getRepository() != null && pushHook.getRepository().getUrl() == null) {
+        if (pushHook.getRepository() != null && pushHook.getRepository().getGitHttpUrl() == null) {
             LOGGER.log(Level.WARNING, "No repository url found.");
             return;
         }

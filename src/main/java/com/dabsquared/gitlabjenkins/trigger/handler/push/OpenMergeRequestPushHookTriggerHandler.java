@@ -179,7 +179,7 @@ class OpenMergeRequestPushHookTriggerHandler implements PushHookTriggerHandler {
     private URIish retrieveUrIish(PushHook hook) {
         try {
             if (hook.getRepository() != null) {
-                return new URIish(hook.getRepository().getUrl());
+                return new URIish(hook.getRepository().getGitHttpUrl());
             }
         } catch (URISyntaxException e) {
             LOGGER.log(Level.WARNING, "could not parse URL");
