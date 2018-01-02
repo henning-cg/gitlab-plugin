@@ -1,6 +1,7 @@
 package com.dabsquared.gitlabjenkins.connection;
 
-import com.dabsquared.gitlabjenkins.gitlab.api.GitLabApi;
+
+import com.dabsquared.gitlabjenkins.gitlab.api.GitLabClient;
 import hudson.Extension;
 import hudson.model.Job;
 import hudson.model.JobProperty;
@@ -10,6 +11,7 @@ import hudson.util.ListBoxModel;
 import jenkins.model.Jenkins;
 import net.sf.json.JSONObject;
 import org.apache.commons.lang.StringUtils;
+import org.jenkinsci.Symbol;
 import org.kohsuke.stapler.DataBoundConstructor;
 import org.kohsuke.stapler.StaplerRequest;
 
@@ -29,7 +31,7 @@ public class GitLabConnectionProperty extends JobProperty<Job<?, ?>> {
         return gitLabConnection;
     }
 
-    public GitLabApi getClient() {
+    public GitLabClient getClient() {
         if (StringUtils.isNotEmpty(gitLabConnection)) {
             GitLabConnectionConfig connectionConfig = (GitLabConnectionConfig) Jenkins.getInstance().getDescriptor(GitLabConnectionConfig.class);
             return connectionConfig != null ? connectionConfig.getClient(gitLabConnection) : null;
@@ -37,7 +39,7 @@ public class GitLabConnectionProperty extends JobProperty<Job<?, ?>> {
         return null;
     }
 
-    public static GitLabApi getClient(Run<?, ?> build) {
+    public static GitLabClient getClient(Run<?, ?> build) {
         final GitLabConnectionProperty connectionProperty = build.getParent().getProperty(GitLabConnectionProperty.class);
         if (connectionProperty != null) {
             return connectionProperty.getClient();
@@ -46,6 +48,7 @@ public class GitLabConnectionProperty extends JobProperty<Job<?, ?>> {
     }
 
     @Extension
+    @Symbol("gitLabConnection")
     public static class DescriptorImpl extends JobPropertyDescriptor {
 
         @Override
