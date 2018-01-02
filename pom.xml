@@ -13,9 +13,9 @@
     <findbugs.failOnError>false</findbugs.failOnError>
   </properties>
 
-  <artifactId>gitlab-plugin</artifactId>
+  <artifactId>gitlab-plugin-http-remote</artifactId>
   <version>1.5.2</version>
-  <name>GitLab Plugin</name>
+  <name>GitLab Plugin ** HTTP REMOTE **</name>
   <url>https://wiki.jenkins-ci.org/display/JENKINS/GitLab+Plugin</url>
   <packaging>hpi</packaging>
 
